@@ -10,10 +10,12 @@ float randDouble(float b);
 {
 @public
     int array[20];
-    int fitness;
     int profit[20];
     int weight[20];
+@private
+    int fitness;
 }
+@property int fitness;
 - (id) init;
 - (Individual*) deepCopy;
 - (void) printIndividual;

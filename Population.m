@@ -52,9 +52,9 @@
     for (int i = 0; i < 50; ++i)
     {
         Individual *ind = [inds objectAtIndex:i];
-        if (ind->fitness > max)
+        if (ind.fitness > max)
         {
-            max = ind->fitness;
+            max = ind.fitness;
             index = i;
         }
     }
@@ -88,7 +88,7 @@
     [child2 mutation];
     [child1 calcFitness];
     [child2 calcFitness];
-    if (child1->fitness > child2->fitness)
+    if (child1.fitness > child2.fitness)
     {
         [self insert:index:child1];
     }
@@ -110,7 +110,7 @@
     for (int i = 0; i < 50; ++i)
     {
         Individual *ind = [inds objectAtIndex:i];
-        fitSum += ind->fitness;
+        fitSum += ind.fitness;
     }
     double random = randDouble(1.0);
     double checkPoint = fitSum * random;
@@ -118,7 +118,7 @@
     for (int i = 0; i < 50; ++i)
     {
         Individual *ind = [inds objectAtIndex:i];
-        fitSum += ind->fitness;
+        fitSum += ind.fitness;
         if (fitSum > checkPoint)
         {
             return ind;

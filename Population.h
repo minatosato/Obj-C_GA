@@ -3,7 +3,7 @@
 
 @interface Population:NSObject
 {
-@public
+@private
     NSMutableArray *inds;
 }
 - (id) init;

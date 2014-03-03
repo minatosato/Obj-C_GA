@@ -7,6 +7,8 @@ float randDouble(float b)
 }
 
 @implementation Individual
+@synthesize fitness;
+
 - (id) init
 {
     if ([super init])
@@ -14,7 +16,7 @@ float randDouble(float b)
         int pr[20] = {32,52,69,42,19,12,39,72,35,74,96,24,82,82,84,60,73,100,88,56};
         int we[20] = {20,80,49,95,68,32,100,69,65,73,18,44,25,37,90,75,11,83,15,57};
         
-        for (int i = 0; i < sizeof(array)/sizeof(array[0]); i++)
+        for (int i = 0; i < sizeof(array)/sizeof(array[0]); ++i)
         {
             profit[i] = pr[i];
             weight[i] = we[i];
@@ -38,7 +40,7 @@ float randDouble(float b)
 }
 - (void) printIndividual
 {
-    for (int i = 0; i < sizeof(array)/sizeof(array[0]); i++)
+    for (int i = 0; i < sizeof(array)/sizeof(array[0]); ++i)
     {
         printf("%d ", array[i]);
     }
@@ -81,11 +83,11 @@ float randDouble(float b)
 }
 - (NSComparisonResult) compare:(Individual*) ind
 {
-    if (self->fitness > ind->fitness)
+    if (self.fitness > ind.fitness)
     {
         return NSOrderedDescending;
     }
-    else if (self->fitness < ind->fitness)
+    else if (self.fitness < ind.fitness)
     {
         return NSOrderedAscending;
     }
