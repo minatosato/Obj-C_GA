@@ -163,7 +163,7 @@ float randDouble(float b)
     }
     [inds replaceObjectAtIndex:index withObject:ind];
 }
-- (void) pritnMaxIndividual
+- (void) printMaxIndividual
 {
     int max = 0;
     int index = 0;
@@ -243,9 +243,9 @@ int main(int argc, char const *argv[])
         for (int i = 0; i < 3000; ++i)
         {
             [pop crossover];
-            // [pop pritnMaxIndividual];
+            // [pop printMaxIndividual];
         }
-        [pop pritnMaxIndividual];
+        [pop printMaxIndividual];
     }
     return 0;
 }
