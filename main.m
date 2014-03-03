@@ -5,15 +5,17 @@ int main(int argc, char const *argv[])
 {
     @autoreleasepool
     {
-        printf("Hello\n");
         Population *pop = [[Population alloc] init];
-        [pop mutation];
-        for (int i = 0; i < 3000; ++i)
+        
+        for (int i = 0; i < 10; ++i)
         {
-            [pop crossover];
-            // [pop printMaxIndividual];
+            [pop applyCrossover];
+            [pop sort];
         }
-        [pop printMaxIndividual];
+//        [pop sort];
+        
+//        [pop printMaxIndividual];
+        [pop printPopulation];
     }
     return 0;
 }

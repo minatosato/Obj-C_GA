@@ -19,4 +19,5 @@ float randDouble(float b);
 - (void) printIndividual;
 - (void) calcFitness;
 - (void) mutation;
+- (NSComparisonResult) compare:(Individual*) ind;
 @end

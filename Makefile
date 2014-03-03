@@ -1,4 +1,4 @@
 GA:*.m
 	gcc -o GA *.m -framework Cocoa -framework Foundation
-clear:
+clean:
 	rm GA

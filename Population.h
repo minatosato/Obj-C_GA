@@ -11,9 +11,10 @@
 - (void) calcPopFitness;
 - (void) mutation;
 - (void) sort;
-- (void) insert: (Individual*) ind;
+- (void) insert: (int) index : (Individual*) ind;
 - (void) printMaxIndividual;
-- (void) crossover;
+- (void) crossover:(int) index;
+- (void) applyCrossover;
 - (Individual*) selectOffspring;
 
 @end

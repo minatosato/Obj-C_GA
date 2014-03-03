@@ -4,11 +4,13 @@
 @implementation Population
 - (id) init
 {
-    [super init];
-    inds = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 50; ++i)
+    if ([super init])
     {
-        [inds addObject:[[Individual alloc] init]];
+        inds = [[NSMutableArray alloc] init];
+        for (int i = 0; i < 50; ++i)
+        {
+            [inds addObject:[[Individual alloc] init]];
+        }
     }
     return self;
 }
@@ -34,25 +36,24 @@
         [[inds objectAtIndex:i] mutation];
     }
 }
+/* 昇順にソート */
 - (void) sort
 {
-    [inds sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        return [obj1 compare:obj2];
-    }];
+    [inds sortUsingSelector:@selector(compare:)];
 }
-- (void) insert: (Individual*) ind
+- (void) insert: (int) index : (Individual*) ind
 {
-    int min = 1000;
-    int index = 0;
-    for (int i = 0; i < 50; ++i)
-    {
-        Individual *ind = [inds objectAtIndex:i];
-        if (ind->fitness<min)
-        {
-            min = ind->fitness;
-            index = i;
-        }
-    }
+//    int min = 1000;
+//    int index = 0;
+//    for (int i = 0; i < 50; ++i)
+//    {
+//        Individual *ind = [inds objectAtIndex:i];
+//        if (ind->fitness<min)
+//        {
+//            min = ind->fitness;
+//            index = i;
+//        }
+//    }
     [inds replaceObjectAtIndex:index withObject:ind];
 }
 - (void) printMaxIndividual
@@ -70,7 +71,7 @@
     }
     [[inds objectAtIndex:index] printIndividual];
 }
-- (void) crossover
+- (void) crossover:(int)index
 {
     Individual *parent1 = [self selectOffspring];
     Individual *parent2 = [self selectOffspring];
@@ -98,8 +99,21 @@
     [child2 mutation];
     [child1 calcFitness];
     [child2 calcFitness];
-    [self insert:child1];
-    [self insert:child2];
+    if (child1->fitness > child2->fitness)
+    {
+        [self insert:index:child1];
+    }
+    else
+    {
+        [self insert:index:child2];
+    }
+}
+- (void) applyCrossover
+{
+    for (int i = 0; i < 25; i++)
+    {
+        [self crossover:i];
+    }
 }
 - (Individual*) selectOffspring
 {

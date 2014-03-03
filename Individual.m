@@ -9,17 +9,19 @@ float randDouble(float b)
 @implementation Individual
 - (id) init
 {
-    [super init];
-    int pr[20] = {32,52,69,42,19,12,39,72,35,74,96,24,82,82,84,60,73,100,88,56};
-    int we[20] = {20,80,49,95,68,32,100,69,65,73,18,44,25,37,90,75,11,83,15,57};
-
-    for (int i = 0; i < sizeof(array)/sizeof(array[0]); i++)
+    if ([super init])
     {
-        profit[i] = pr[i];
-        weight[i] = we[i];
-        array[i] = rand()%2;
+        int pr[20] = {32,52,69,42,19,12,39,72,35,74,96,24,82,82,84,60,73,100,88,56};
+        int we[20] = {20,80,49,95,68,32,100,69,65,73,18,44,25,37,90,75,11,83,15,57};
+        
+        for (int i = 0; i < sizeof(array)/sizeof(array[0]); i++)
+        {
+            profit[i] = pr[i];
+            weight[i] = we[i];
+            array[i] = rand()%2;
+        }
+        [self calcFitness];
     }
-    [self calcFitness];
     return self;
 }
 - (Individual*) deepCopy
@@ -76,5 +78,20 @@ float randDouble(float b)
         }
     }
     [self calcFitness];
+}
+- (NSComparisonResult) compare:(Individual*) ind
+{
+    if (self->fitness > ind->fitness)
+    {
+        return NSOrderedDescending;
+    }
+    else if (self->fitness < ind->fitness)
+    {
+        return NSOrderedAscending;
+    }
+    else
+    {
+        return NSOrderedSame;
+    }
 }
 @end
