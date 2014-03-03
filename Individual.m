@@ -58,7 +58,7 @@ float randDouble(float b)
     }
     if (w > 553)
     {
-        fitness /= 10;
+        fitness /= 100;
     }
 }
 - (void) mutation

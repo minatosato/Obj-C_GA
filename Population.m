@@ -43,17 +43,6 @@
 }
 - (void) insert: (int) index : (Individual*) ind
 {
-//    int min = 1000;
-//    int index = 0;
-//    for (int i = 0; i < 50; ++i)
-//    {
-//        Individual *ind = [inds objectAtIndex:i];
-//        if (ind->fitness<min)
-//        {
-//            min = ind->fitness;
-//            index = i;
-//        }
-//    }
     [inds replaceObjectAtIndex:index withObject:ind];
 }
 - (void) printMaxIndividual

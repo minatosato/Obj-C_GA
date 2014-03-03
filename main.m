@@ -7,14 +7,11 @@ int main(int argc, char const *argv[])
     {
         Population *pop = [[Population alloc] init];
         
-        for (int i = 0; i < 10; ++i)
+        for (int i = 0; i < 50; ++i)
         {
             [pop applyCrossover];
             [pop sort];
         }
-//        [pop sort];
-        
-//        [pop printMaxIndividual];
         [pop printPopulation];
     }
     return 0;
