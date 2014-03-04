@@ -6,13 +6,11 @@
 {
     if ([super init])
     {
-        inds = [[NSMutableArray alloc] init];
-        [inds autorelease];
+        inds = [[[NSMutableArray alloc] init] autorelease];
+
         for (int i = 0; i < 50; ++i)
         {
-            Individual *newInd = [[Individual alloc] init];
-            [newInd autorelease];
-            [inds addObject:newInd];
+            [inds addObject:[[[Individual alloc] init] autorelease]];
         }
     }
     return self;

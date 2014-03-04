@@ -5,8 +5,7 @@ int main(int argc, char const *argv[])
 {
     @autoreleasepool
     {
-        Population *pop = [[Population alloc] init];
-        [pop autorelease];
+        Population *pop = [[[Population alloc] init] autorelease];
         
         for (int i = 0; i < 50; ++i)
         {

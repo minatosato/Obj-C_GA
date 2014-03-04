@@ -28,8 +28,7 @@ float randDouble(float b)
 }
 - (Individual*) deepCopy
 {
-    Individual *cp = [[Individual alloc] init];
-    [cp autorelease];
+    Individual *cp = [[[Individual alloc] init] autorelease];
     for (int i = 0; i < 20; ++i)
     {
         cp -> array[i] = array[i];
