@@ -7,9 +7,12 @@
     if ([super init])
     {
         inds = [[NSMutableArray alloc] init];
+        [inds autorelease];
         for (int i = 0; i < 50; ++i)
         {
-            [inds addObject:[[Individual alloc] init]];
+            Individual *newInd = [[Individual alloc] init];
+            [newInd autorelease];
+            [inds addObject:newInd];
         }
     }
     return self;

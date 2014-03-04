@@ -1,3 +1,3 @@
-# Genetic Algorithm
-gcc -o GA *.m -framework Cocoa -framework Foundation  
+## Genetic Algorithm
+make
 ./GA
