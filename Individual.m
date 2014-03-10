@@ -13,8 +13,8 @@ float randDouble(float b)
 {
     if ([super init])
     {
-        int pr[20] = {32,52,69,42,19,12,39,72,35,74,96,24,82,82,84,60,73,100,88,56};
-        int we[20] = {20,80,49,95,68,32,100,69,65,73,18,44,25,37,90,75,11,83,15,57};
+        int pr[GENE_LENGTH] = {32,52,69,42,19,12,39,72,35,74,96,24,82,82,84,60,73,100,88,56};
+        int we[GENE_LENGTH] = {20,80,49,95,68,32,100,69,65,73,18,44,25,37,90,75,11,83,15,57};
         
         for (int i = 0; i < sizeof(array)/sizeof(array[0]); ++i)
         {
@@ -26,10 +26,14 @@ float randDouble(float b)
     }
     return self;
 }
+- (void) dealloc
+{
+    [super dealloc];
+}
 - (Individual*) deepCopy
 {
     Individual *cp = [[[Individual alloc] init] autorelease];
-    for (int i = 0; i < 20; ++i)
+    for (int i = 0; i < GENE_LENGTH; ++i)
     {
         cp -> array[i] = array[i];
         cp -> profit[i] = profit[i];
@@ -58,7 +62,7 @@ float randDouble(float b)
             w += weight[i];
         }
     }
-    if (w > 553)
+    if (w > MAX_WEIGHT)
     {
         fitness /= 100;
     }
@@ -67,7 +71,7 @@ float randDouble(float b)
 {
     for (int i = 0; i < sizeof(array)/sizeof(array[0]); ++i)
     {
-        if (rand()%20 == 0)
+        if (rand()%GENE_LENGTH == 0)
         {
             if (array[i]==0)
             {

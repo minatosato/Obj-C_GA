@@ -8,16 +8,20 @@
     {
         inds = [[[NSMutableArray alloc] init] autorelease];
 
-        for (int i = 0; i < 50; ++i)
+        for (int i = 0; i < POP_SIZE; ++i)
         {
             [inds addObject:[[[Individual alloc] init] autorelease]];
         }
     }
     return self;
 }
+- (void) dealloc
+{
+    [super dealloc];
+}
 - (void) printPopulation
 {
-    for (int i = 0; i < 50; ++i)
+    for (int i = 0; i < POP_SIZE; ++i)
     {
         Individual *ind = [inds objectAtIndex:i];
         [ind printIndividual];
@@ -25,14 +29,14 @@
 }
 - (void) calcPopFitness
 {
-    for (int i = 0; i < 50; ++i)
+    for (int i = 0; i < POP_SIZE; ++i)
     {
         [[inds objectAtIndex:i] calcFitness];
     }
 }
 - (void) mutation
 {
-    for (int i = 0; i < 50; ++i)
+    for (int i = 0; i < POP_SIZE; ++i)
     {
         [[inds objectAtIndex:i] mutation];
     }
@@ -50,7 +54,7 @@
 {
     int max = 0;
     int index = 0;
-    for (int i = 0; i < 50; ++i)
+    for (int i = 0; i < POP_SIZE; ++i)
     {
         Individual *ind = [inds objectAtIndex:i];
         if (ind.fitness > max)
@@ -67,8 +71,8 @@
     Individual *parent2 = [self selectOffspring];
     Individual *child1 = [parent1 deepCopy];
     Individual *child2 = [parent2 deepCopy];
-    int sep1 = rand()%17 + 1;
-    int sep2 = rand()%17 + 1;
+    int sep1 = rand()%(GENE_LENGTH-3) + 1;
+    int sep2 = rand()%(GENE_LENGTH-3) + 1;
     if (sep1 > sep2)
     {
         int tmp = sep1;
@@ -100,7 +104,7 @@
 }
 - (void) applyCrossover
 {
-    for (int i = 0; i < 25; i++)
+    for (int i = 0; i < POP_SIZE/2; i++)
     {
         [self crossover:i];
     }
@@ -108,7 +112,7 @@
 - (Individual*) selectOffspring
 {
     int fitSum = 0;
-    for (int i = 0; i < 50; ++i)
+    for (int i = 0; i < POP_SIZE; ++i)
     {
         Individual *ind = [inds objectAtIndex:i];
         fitSum += ind.fitness;
@@ -116,7 +120,7 @@
     double random = randDouble(1.0);
     double checkPoint = fitSum * random;
     fitSum = 0;
-    for (int i = 0; i < 50; ++i)
+    for (int i = 0; i < POP_SIZE; ++i)
     {
         Individual *ind = [inds objectAtIndex:i];
         fitSum += ind.fitness;

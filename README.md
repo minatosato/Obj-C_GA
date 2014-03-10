@@ -1,3 +1,3 @@
 ## Genetic Algorithm
-make
+make  
 ./GA
